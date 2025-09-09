@@ -139,6 +139,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -165,8 +169,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// prisma/schema.prisma\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \".prisma/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Define the ProgressItem table\nmodel ProgressItem {\n  id           String @id @default(cuid()) // Unique ID, cuid() is great for web apps\n  name         String\n  startingPage Int\n  currentPage  Int\n  targetPage   Int\n  position     Int    @default(0) // Position for ordering\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
-  "inlineSchemaHash": "19f682ecb9a1cce971be058b9b303ce7e2402682bfe572da83cf689f29684a88",
+  "inlineSchema": "// prisma/schema.prisma\n\n// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \".prisma/client\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n// Define the ProgressItem table\nmodel ProgressItem {\n  id           String @id @default(cuid()) // Unique ID, cuid() is great for web apps\n  name         String\n  startingPage Int\n  currentPage  Int\n  targetPage   Int\n  position     Int    @default(0) // Position for ordering\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "6b3b3497be60a5adea351cdea8a7b98d3727ef952663d5c8a6b897b4e568604e",
   "copyEngine": true
 }
 config.dirname = '/'
